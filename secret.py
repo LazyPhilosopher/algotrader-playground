@@ -1,6 +1,6 @@
 # Mainnet API
-# api_key = "FDee7PqVneWDZYzg3PAELGjiIjQ7LiCay4rYoO1K6f9TbfVM4IVTCIWDAjZSRpJl"
-# secret_key = "HD5zgO8sNaNyLletb4dYD11658MOGDD8CJERSBeegcuwjEzdKfQMGaek9wdvxNMV"
+# api_key = "..."
+# secret_key = "..."
 
 # Testnet API
 api_key = "sJCUOdLhRgb4iI45HnhY1KiaCHyjkHIzIZLRSmDgrIfn7adMAjCbnvW75iGSAYoV"
