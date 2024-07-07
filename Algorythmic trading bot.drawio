@@ -1,0 +1,171 @@
+<mxfile host="Electron" modified="2024-07-07T17:31:53.618Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.6.4 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="RzOlDv_0ULkm02140WeJ" version="24.6.4" type="device">
+  <diagram name="Page-1" id="iM3CBCuCWeTjhz-03Pi7">
+    <mxGraphModel dx="1669" dy="551" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="702DsRf9usgfnhfPo4UH-1" value="DataControlModule" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="350" y="330" width="200" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-18" value="Stores list of SQLite databases and their parameters in JSON configuration" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="702DsRf9usgfnhfPo4UH-1" vertex="1">
+          <mxGeometry y="30" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-21" value="Provides a common API interface for any used stocks platform" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="702DsRf9usgfnhfPo4UH-1" vertex="1">
+          <mxGeometry y="80" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-23" value="Runs in separate thread" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="702DsRf9usgfnhfPo4UH-1" vertex="1">
+          <mxGeometry y="120" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-24" value="Is implemented in extendable way" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="702DsRf9usgfnhfPo4UH-1" vertex="1">
+          <mxGeometry y="140" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-25" value="Keeps data in up-to-date state" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="702DsRf9usgfnhfPo4UH-1" vertex="1">
+          <mxGeometry y="160" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-26" value="Notifies Evaluation module of data update" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="702DsRf9usgfnhfPo4UH-1" vertex="1">
+          <mxGeometry y="180" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-2" value="GOLDUSDT" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+          <mxGeometry x="330" y="100" width="90" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-3" value="ETHUSDT" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+          <mxGeometry x="340" y="110" width="90" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-4" value="BTCUSDT" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+          <mxGeometry x="355" y="120" width="90" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-5" value="" style="endArrow=none;html=1;rounded=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" parent="1" source="702DsRf9usgfnhfPo4UH-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="460" y="330" as="sourcePoint" />
+            <mxPoint x="400" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-7" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="280" as="sourcePoint" />
+            <mxPoint x="387.5" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-6" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="702DsRf9usgfnhfPo4UH-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="280" as="sourcePoint" />
+            <mxPoint x="447.5" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-8" value="" style="endArrow=none;html=1;rounded=0;entryX=0.145;entryY=1;entryDx=0;entryDy=-4.35;entryPerimeter=0;" parent="1" target="702DsRf9usgfnhfPo4UH-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="280" as="sourcePoint" />
+            <mxPoint x="447.5" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-9" value="JSON Configuration" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="1" vertex="1">
+          <mxGeometry x="460" y="140" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-10" value="" style="endArrow=none;html=1;rounded=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="702DsRf9usgfnhfPo4UH-1" target="702DsRf9usgfnhfPo4UH-9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="460" y="290" as="sourcePoint" />
+            <mxPoint x="510" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-11" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="702DsRf9usgfnhfPo4UH-18" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="640" y="385" as="sourcePoint" />
+            <mxPoint x="560" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-12" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="702DsRf9usgfnhfPo4UH-21" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="640" y="430" as="sourcePoint" />
+            <mxPoint x="550" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-13" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="702DsRf9usgfnhfPo4UH-24" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="640" y="480" as="sourcePoint" />
+            <mxPoint x="610" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-14" value="Biance API" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="645" y="360" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-15" value="YahooFinance API" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="640" y="400" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-16" value="..." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="650" y="458" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-22" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Steps/Questions&lt;/h1&gt;&lt;p&gt;* Wheter use threading on PySide6 QThreads for running multiple modules?&lt;/p&gt;&lt;p&gt;* How often and in what way to notify Evaluation module of data update?&lt;br&gt;(if evaluation computations occur faster/slower than once in a minute)&lt;/p&gt;&lt;p&gt;* Stock data are transmitted in form of Pandas frames&lt;/p&gt;&lt;p&gt;* JSON Configuration contains:&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;list of symbols, column names, step size (1 minute, 1 day, ...), start-end date&lt;/span&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="580" y="90" width="500" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-28" value="" style="endArrow=classic;html=1;rounded=0;exitX=-0.004;exitY=0.603;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="702DsRf9usgfnhfPo4UH-18" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="90" y="540" as="sourcePoint" />
+            <mxPoint x="180" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-29" value="Stock data API&lt;div&gt;&amp;nbsp;requests&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="702DsRf9usgfnhfPo4UH-28" vertex="1" connectable="0">
+          <mxGeometry x="0.2461" y="-1" relative="1" as="geometry">
+            <mxPoint x="23" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-30" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1.002;exitY=0.142;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" target="702DsRf9usgfnhfPo4UH-21" edge="1" source="trGBAqX-_Rp0TsU6a7N9-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="170" y="430" as="sourcePoint" />
+            <mxPoint x="270" y="408" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="702DsRf9usgfnhfPo4UH-31" value="Ask for adding new&lt;div&gt;&amp;nbsp;Symbol to database&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="702DsRf9usgfnhfPo4UH-30" vertex="1" connectable="0">
+          <mxGeometry x="-0.1881" relative="1" as="geometry">
+            <mxPoint x="27" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Swr8Glhg8XMlyYzNEAY-1" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="702DsRf9usgfnhfPo4UH-24" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="180" y="480" as="sourcePoint" />
+            <mxPoint x="220" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Swr8Glhg8XMlyYzNEAY-2" value="Add column to&amp;nbsp;&lt;div&gt;symbol data&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="2Swr8Glhg8XMlyYzNEAY-1" vertex="1" connectable="0">
+          <mxGeometry x="-0.0302" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="trGBAqX-_Rp0TsU6a7N9-4" value="EvaluationModule" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-30" y="330" width="210" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="trGBAqX-_Rp0TsU6a7N9-5" value="Calculates multiple strategies over premodified data&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="trGBAqX-_Rp0TsU6a7N9-4">
+          <mxGeometry y="30" width="200" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="trGBAqX-_Rp0TsU6a7N9-6" value="Trains NN over multiple strategies to decide buy/sell actions" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="trGBAqX-_Rp0TsU6a7N9-4">
+          <mxGeometry y="62" width="200" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="trGBAqX-_Rp0TsU6a7N9-7" value="Sends Buy/Sell commands to TradeModule" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="trGBAqX-_Rp0TsU6a7N9-4">
+          <mxGeometry y="94" width="210" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="trGBAqX-_Rp0TsU6a7N9-16" value="Contains safety measures to prevent financial loss due to malfunction" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="trGBAqX-_Rp0TsU6a7N9-4">
+          <mxGeometry y="130" width="210" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="trGBAqX-_Rp0TsU6a7N9-9" value="EvaluationModule" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-350" y="330" width="210" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="trGBAqX-_Rp0TsU6a7N9-10" value="Receives Buy/Sell orders through API interface" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="trGBAqX-_Rp0TsU6a7N9-9">
+          <mxGeometry y="30" width="200" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="trGBAqX-_Rp0TsU6a7N9-13" value="Executes Buy/Sell orders on destination platform (Binance)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="trGBAqX-_Rp0TsU6a7N9-9">
+          <mxGeometry y="62" width="210" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="trGBAqX-_Rp0TsU6a7N9-14" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-30" y="390" as="sourcePoint" />
+            <mxPoint x="-140" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="trGBAqX-_Rp0TsU6a7N9-15" value="Buy/Sell API&lt;div&gt;&amp;nbsp;requests&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="trGBAqX-_Rp0TsU6a7N9-14">
+          <mxGeometry x="0.2461" y="-1" relative="1" as="geometry">
+            <mxPoint x="23" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
