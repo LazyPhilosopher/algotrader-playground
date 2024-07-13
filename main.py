@@ -1,42 +1,33 @@
-from secret import api_key, secret_key 
-import sqlite3
-from sqlite.db_controller import DBController
-from models.stock import Stock
-# from binance.client import Client
-# import yfinance as yf
+import sys
+
+from PySide6.QtWidgets import QApplication, QLabel, QVBoxLayout, QWidget
+
+from data_control_module.data_control_module import Worker
 
 
-# client = Client(api_key, secret_key)
+class MainWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
 
-binance_tickers = [
-    # Cryptocurrencies
-    'BTCUSDT',  # Bitcoin vs USDT
-    'ETHUSDT',  # Ethereum vs USDT
-    'BNBUSDT',  # Binance Coin vs USDT
-    'ADAUSDT',  # Cardano vs USDT
-    'SOLUSDT',  # Solana vs USDT
-    'XRPUSDT',  # XRP vs USDT
-    'DOTUSDT',  # Polkadot vs USDT
-    'DOGEUSDT', # Dogecoin vs USDT
-    'AVAXUSDT', # Avalanche vs USDT
-    'LINKUSDT', # Chainlink vs USDT
-    'MATICUSDT',# Polygon vs USDT
-    'LTCUSDT',  # Litecoin vs USDT
-    'BCHUSDT',  # Bitcoin Cash vs USDT
-    'ATOMUSDT', # Cosmos vs USDT
-    'ALGOUSDT', # Algorand vs USDT
-    'XLMUSDT',  # Stellar vs USDT
-    'VETUSDT',  # VeChain vs USDT
-    'ETCUSDT',  # Ethereum Classic vs USDT
-    'THETAUSDT',# THETA vs USDT
-    'XTZUSDT',  # Tezos vs USDT
-]
+    def initUI(self):
+        self.label = QLabel("Starting countdown...")
+        layout = QVBoxLayout()
+        layout.addWidget(self.label)
+        self.setLayout(layout)
 
-controller = DBController("storage")
-controller.append_stock_database("BNBUSDT", "storage/stocks")
-controller.append_stock_database("BTCUSDT", "storage/stocks")
-controller.create_stock_price_database("BNBUSDT")
-controller.create_stock_price_database("BTCUSDT")
-controller.parse_csv_data_into_db("data/binance-stablecoin/BNBUSDT.csv", "storage/symbols/BNBUSDT.db")
-# controller.load_csv_to_db("data/binance-stablecoin/BNBUSDT.csv")
-controller.print_stock_data()
+        self.worker = Worker(10)  # Create a Worker to count down from 10
+        self.worker.update_signal.connect(self.update_label)
+        self.worker.start()
+
+    def update_label(self, value):
+        self.label.setText(f"Count: {value}")
+        if value == 0:
+            self.label.setText("Countdown finished!")
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec())
