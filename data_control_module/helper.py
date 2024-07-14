@@ -1,4 +1,21 @@
-def get_binance_historical_klines_archive_links(symbol: str) -> List[str]:
+import os
+import zipfile
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import List
+
+import binance
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+
+def get_binance_historical_klines_zip_links(symbol: str) -> List[str]:
     # Set up the WebDriver (using Chrome in this example)
     driver = webdriver.Chrome()
 
@@ -28,21 +45,21 @@ def get_binance_historical_klines_archive_links(symbol: str) -> List[str]:
     return zip_links
 
 
-def download_archive_and_convert_to_csv(archive_link: str) -> None:
+def download_zip_and_convert_to_csv(archive_link: str, download_dir: str) -> None:
     file_name = archive_link.split("/")[-1]
     file_name_without_ext = Path(file_name).stem
-    ticker_dir = os.path.join(download_dir, file_name_without_ext.split('-')[0])
+    # ticker_dir = os.path.join(download_dir, file_name_without_ext.split('-')[0])
 
-    zip_path = os.path.join(ticker_dir, file_name)
-    csv_path = os.path.join(ticker_dir, file_name_without_ext + ".csv")
+    zip_path = os.path.join(download_dir, file_name)
+    csv_path = os.path.join(download_dir, file_name_without_ext + ".csv")
     print(f"Downloading {file_name}...")
 
     # Download the file
     response = requests.get(archive_link)
     response.raise_for_status()  # Ensure we notice bad responses
 
-    if not os.path.exists(ticker_dir):
-        os.makedirs(ticker_dir)
+    if not os.path.exists(download_dir):
+        os.makedirs(download_dir)
 
     # Save the ZIP file to the specified directory
     with open(zip_path, 'wb') as file:
@@ -51,7 +68,7 @@ def download_archive_and_convert_to_csv(archive_link: str) -> None:
 
     # Extract the ZIP file
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        zip_ref.extractall(ticker_dir)
+        zip_ref.extractall(download_dir)
     print(f"{file_name} extracted to {csv_path}")
 
     # Delete the ZIP file
@@ -93,7 +110,10 @@ def merge_into_single_csv(csv_directory: str, output_directory: str) -> None:
     merged_df = merged_df[["High", "Low", "Close", "Volume"]].copy()
 
     # Save the merged DataFrame to a new CSV file
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
     merged_df.to_csv(output_file)
+
     print(f"Merged CSV saved to {output_file}")
 
 
@@ -112,7 +132,7 @@ def get_current_month_days_count():
     return days_in_current_month
 
 
-def store_binance_ticker(ticker_name: str, interval: str, days: str) -> None:
+def store_binance_ticker_to_csv(ticker_name: str, download_dir: str, client: binance.Client, interval: str, days: str) -> None:
     now = datetime.now(timezone.utc)
     past = str(now - timedelta(days=days))
 
@@ -125,4 +145,6 @@ def store_binance_ticker(ticker_name: str, interval: str, days: str) -> None:
                   "Taker Buy Quote Asset Volume", "Ignore"]
     # df.drop(columns=["Open"], inplace=True)
     df.set_index("Open Time", inplace=True)
-    df.to_csv(os.path.join(download_dir, ticker_name, ticker_name + "_current_month.csv"), index=True)
+    if not os.path.exists(download_dir):
+        os.makedirs(download_dir)
+    df.to_csv(os.path.join(download_dir, ticker_name + "_current_month.csv"), index=True)

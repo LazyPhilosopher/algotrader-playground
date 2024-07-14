@@ -1,6 +1,17 @@
 {
   "symbols": [
-    {"key": "BTCUSDT", "step": "1m", "api": "binance", "integrity": false},
-    {"key": "EURUSD=X", "step": "1d", "api": "yf", "integrity": false}
+    { "key": "BTCUSDT",
+      "step": "1m",
+      "api": "binance",
+      "integrity": false,
+      "type": "binance-stablecoin"
+    },
+    {
+      "key": "ETHUSDT",
+      "step": "1m",
+      "api": "binance",
+      "integrity": false,
+      "type": "binance-stablecoin"
+    }
   ]
 }
