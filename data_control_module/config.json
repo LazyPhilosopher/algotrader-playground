@@ -1,5 +1,12 @@
 {
   "symbols": [
+    {
+      "key": "EURUSD=X",
+      "step": "1d",
+      "api": "yahoo_finance",
+      "integrity": false,
+      "type": "yf_symbols"
+    },
     { "key": "BTCUSDT",
       "step": "1m",
       "api": "binance",

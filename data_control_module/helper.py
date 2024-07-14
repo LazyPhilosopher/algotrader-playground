@@ -1,4 +1,5 @@
 import os
+import sqlite3
 import zipfile
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -13,6 +14,8 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+
+from data_control_module.Symbol import Symbol
 
 
 def get_binance_historical_klines_zip_links(symbol: str) -> List[str]:
@@ -132,7 +135,7 @@ def get_current_month_days_count():
     return days_in_current_month
 
 
-def store_binance_ticker_to_csv(ticker_name: str, download_dir: str, client: binance.Client, interval: str, days: str) -> None:
+def store_binance_ticker_to_csv(ticker_name: str, download_dir: str, client: binance.Client, interval: str, days: int) -> None:
     now = datetime.now(timezone.utc)
     past = str(now - timedelta(days=days))
 
@@ -148,3 +151,78 @@ def store_binance_ticker_to_csv(ticker_name: str, download_dir: str, client: bin
     if not os.path.exists(download_dir):
         os.makedirs(download_dir)
     df.to_csv(os.path.join(download_dir, ticker_name + "_current_month.csv"), index=True)
+
+
+def download_missing_binance_csv(client: binance.Client, symbol: Symbol, data_dir: str):
+    kline_zip_links: List[str] = get_binance_historical_klines_zip_links(symbol.name)
+    buffer_dir = os.path.join(data_dir, symbol.type, "buffered", symbol.name)
+    for zip_link in kline_zip_links:
+        file_name = os.path.basename(zip_link)
+        file_root, _ = os.path.splitext(file_name)
+        csv_path = os.path.join(buffer_dir, f"{file_root}.csv")
+        if not os.path.isfile(csv_path):
+            download_zip_and_convert_to_csv(archive_link=zip_link,
+                                            download_dir=buffer_dir)
+        else:
+            print(f"{csv_path} already exists.")
+
+    # Get current month ticker data and store into CSV
+
+    store_binance_ticker_to_csv(ticker_name=symbol.name,
+                                download_dir=buffer_dir,
+                                client=client,
+                                interval="1m",
+                                days=get_current_month_days_count())
+
+    # Merge all together
+    merge_into_single_csv(csv_directory=buffer_dir,
+                          output_directory=os.path.join(data_dir,
+                                                        symbol.type,
+                                                        "merged"))
+
+
+def create_kline_mysql(db_path):
+    connection = sqlite3.connect(db_path)
+    cursor = connection.cursor()
+    cursor.execute('''
+                    CREATE TABLE IF NOT EXISTS market_data (
+                        Date TEXT,
+                        High REAL,
+                        Low REAL,
+                        Close REAL,
+                        Volume REAL)
+                    ''')
+
+    # Commit the changes and close the connection
+    connection.commit()
+    connection.close()
+
+
+def parse_csv_data_to_mysql(csv_file_path: str, mysql_file_path: str):
+    df = pd.read_csv(csv_file_path)
+
+    # Connect to SQLite database (or create it if it doesn't exist)
+    conn = sqlite3.connect(mysql_file_path)
+    cursor = conn.cursor()
+
+    # Create the table
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS market_data (
+        Date TEXT PRIMARY KEY,
+        High REAL,
+        Low REAL,
+        Close REAL,
+        Volume REAL
+    )
+    ''')
+
+    # Insert data into the table
+    for index, row in df.iterrows():
+        cursor.execute('''
+        INSERT OR REPLACE INTO market_data (Date, High, Low, Close, Volume) 
+        VALUES (?, ?, ?, ?, ?)
+        ''', (row['Date'], row['High'], row['Low'], row['Close'], row['Volume']))
+
+    # Commit the transaction and close the connection
+    conn.commit()
+    conn.close()
